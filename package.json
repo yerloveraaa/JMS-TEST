@@ -1,6 +1,6 @@
 {
   "name": "firts-test-jms-npm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JMS INC",
   "main": "src/index.js",
   "scripts": {
