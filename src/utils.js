@@ -1,4 +1,4 @@
-import { ORDER_STATUS, CUSTOMER_DELIVERY_OPTIONS, RESTAURANT_DELIVERY_SERVICES } from "./consts";
+import { ORDER_STATUS } from "./consts";
 
 export const ORDER_STATUS_CANCELLED = (status) =>
   [
@@ -17,23 +17,40 @@ export const ORDER_STATUS_PREPARING = (status) =>
     ORDER_STATUS.restaurantAccepted,
   ].includes(status);
 
-export const UI_CUSTOMER_DELIVERY_OPTIONS = {
-  ...CUSTOMER_DELIVERY_OPTIONS,
-  flexible: "flexible",
-};
-
-export const UI_CUSTOMER_DELIVERY_OPTION_LABELS = {
-  [UI_CUSTOMER_DELIVERY_OPTIONS.pickup]: "Pickup Only - 15kms",
-  [UI_CUSTOMER_DELIVERY_OPTIONS.flexible]: "Delivery & Pickup - 5kms",
-};
-
-
-export const DELIVERY_LABELS = {
-    [RESTAURANT_DELIVERY_SERVICES.pickupOnly]: "Pickup only",
-    [RESTAURANT_DELIVERY_SERVICES.deliveryOnly]: "Delivery only",
-    [RESTAURANT_DELIVERY_SERVICES.flexible]: "Delivery and Pickup",
-    [CUSTOMER_DELIVERY_OPTIONS.pickup]: "Pickup",
-    [CUSTOMER_DELIVERY_OPTIONS.delivery]: "Delivery",
-  };
+  export const geofirexToLocation = (location) => {
+    let geopoint = location?.geopoint;
+    
+    if(geopoint?.latitude && geopoint?.longitude){
+      return {
+        latitude: geopoint.latitude,
+        longitude: geopoint.longitude
+      };
+    }
   
+    geopoint = location?.geopoint?.toJSON?.();
+    if(geopoint?.latitude && geopoint?.longitude){
+        return geopoint
+    } 
+    return null;
+  };
+
+
+  export const geofirexToJSON = (location) => {
+    let geopoint = location?.geopoint;
+    
+    if(geopoint?.latitude && geopoint?.longitude){
+      return {
+        latitude: geopoint.latitude,
+        longitude: geopoint.longitude
+      };
+    }
+    geopoint = location?.geopoint?.toJSON?.();
+    if(geopoint?.latitude && geopoint?.longitude){
+        return geopoint
+    } 
+    return null;
+  };
+
+
+
   
